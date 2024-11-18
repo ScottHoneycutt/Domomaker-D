@@ -10,7 +10,8 @@ const handleDomo = (e, onDomoAdded) => {
     const age = e.target.querySelector('#domoAge').value;
 
     if (!name || !age) {
-        helper.handleError('All fields are required'); return false;
+        helper.handleError('All fields are required'); 
+        return false;
     }
     helper.sendPost(e.target.action, { name, age }, onDomoAdded);
     return false;

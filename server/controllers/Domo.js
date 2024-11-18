@@ -3,8 +3,8 @@ const models = require('../models');
 const { Domo } = models;
 
 const makerPage = async (req, res) => {
-  return res.render('app');
-};
+  res.render('app');
+} 
 
 const makeDomo = async (req, res) => {
   if (!req.body.name || !req.body.age) {
@@ -31,6 +31,7 @@ const makeDomo = async (req, res) => {
   }
 };
 
+// Gets all the domos that belong to this account back from the server -SJH
 const getDomos = async (req, res) => {
   try {
     const query = { owner: req.session.account._id };
