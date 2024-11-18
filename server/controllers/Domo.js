@@ -4,7 +4,7 @@ const { Domo } = models;
 
 const makerPage = async (req, res) => {
   res.render('app');
-} 
+};
 
 const makeDomo = async (req, res) => {
   if (!req.body.name || !req.body.age) {

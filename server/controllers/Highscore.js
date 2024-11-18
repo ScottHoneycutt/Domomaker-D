@@ -3,18 +3,18 @@ const models = require('../models');
 const { Highscore } = models;
 
 const scoresPage = async (req, res) => {
-    res.render('scoreboard');
-}
+  res.render('scoreboard');
+};
 
 // Used to add a new score for this account, storing it if it's a highscore. -SJH
 const addNewScore = async (req, res) => {
-  const account = req.session.account;
+  const { account } = req.session;
 
   // Generate a JS object containing the data needed to make a new highscore object -SJH
   let highScoreData;
 
-  // If an account cookie exists, then use the username of the logged-in account and 
-  //the session id to generate the score object server-side -SJH
+  // If an account cookie exists, then use the username of the logged-in account and
+  // the session id to generate the score object server-side -SJH
   if (account) {
     highScoreData = {
       score: req.body.score,
@@ -69,7 +69,8 @@ const getMyHighscores = async (req, res) => {
 const getAllHighScores = async (req, res) => {
   try {
     // No search query because we want all highscore objects -SJH
-    const docs = await Highscore.find({}).sort({score: -1}).select('username score').lean().exec();
+    const docs = await Highscore.find({}).sort({ score: -1 }).select('username score').lean()
+      .exec();
     return res.json({ highscores: docs });
   } catch (err) {
     console.log(err);
